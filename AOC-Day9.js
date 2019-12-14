@@ -6,13 +6,13 @@ const test3 = [104, 1125899906842624, 99];
 
 function Intcode(code) {
     let i = 0;
+    let relative_base = 0;
+    let param1, param2, result;
     while(i < code.length) {
         const opcode = code[i] % 100;
         const param1_mode = ((code[i] % 1000) - opcode);
         const param2_mode = ((code[i] % 10000) - opcode - param1_mode);
         const result_mode = ((code[i] % 100000) - opcode - param1_mode - param2_mode);
-        let param1, param2, result;
-        let relative_base = 0;
 
         // Mode 0 : Position Mode
         // Mode 1 : Immediate Mode
@@ -22,7 +22,7 @@ function Intcode(code) {
             param1 = i + 1;
         } else if (param1_mode / 100 == 2) {
             param1 = code[i + 1] + relative_base;
-            console.log("rel mode: " + param1);
+            // console.log("rel mode: " + param1);
         } else if (param1_mode / 100 == 0) {
             param1 = code[i + 1];
         } else {
@@ -56,8 +56,10 @@ function Intcode(code) {
             code[result] = code[param1] * code[param2];
             i += 4;
         } else if (opcode == 3) {
-            console.log("Prompt input: 1");
-            code[param1] = 1;
+            // Input Value: 
+            // code[param1] = 1;
+            code[param1] = 2;
+            console.log("Input: " + code[param1]);
             i += 2;
         } else if (opcode == 4) {
             console.log("Output: " + code[param1]);
@@ -90,10 +92,10 @@ function Intcode(code) {
             i += 4;
         } else if (opcode == 9) {
             relative_base += code[param1];
-            console.log("Base Changed: " + relative_base);
+            // console.log("Base Changed: " + relative_base);
             i += 2;
         } else if (opcode == 99) {
-            console.log("end");
+            console.log("-END-");
             break;
         } else {
             console.log("Invalid opcode: " + code[i]);
