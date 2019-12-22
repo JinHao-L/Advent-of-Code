@@ -4,4 +4,4 @@ https://adventofcode.com/
 
 Codes mainly done in JS
 
-*Still relatively new to the language so the code may be quite inefficient
+*Still relatively new to the language
