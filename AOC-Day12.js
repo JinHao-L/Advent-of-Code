@@ -2,19 +2,28 @@
 let positions = [];
 let velocities = [];
 
-// const data = [
-//     [16, -8, 13],
-//     [4, 10, 10], 
-//     [17, -5, 6], 
-//     [13, -3, 0]
-// ];
-
 const data = [
+    [16, -8, 13],
+    [4, 10, 10], 
+    [17, -5, 6], 
+    [13, -3, 0]
+];
+
+const test1 = [
     [-1, 0, 2], 
     [2, -10, -7], 
     [4, -8, 8], 
     [3, 5, -1]
 ];
+
+const test2 = [
+    [-8, -10, 0], 
+    [5, 5, 10], 
+    [2, -7, 3], 
+    [9, -8, -3]
+]
+
+const to_run = test2;
 
 function step() {
     // Gravity
@@ -55,49 +64,50 @@ function step() {
 // }
 
 let substeps = 1;
+let done_axis = [];
 
-function loop(axis) {
+function loop() {
+    let time_steps = 0;
+    let axis = -1;
     //Setup
     positions = [];
     velocities = [];
-    // Io;
-    positions.push(data[0]);
-    velocities.push([0, 0, 0]);
 
-    // Europa;
-    // positions.push([4, 10, 10]);
-    positions.push(data[1]);
-    velocities.push([0, 0, 0]);
+    for (let i = 0; i < to_run.length; i++) {
+        positions[i] = [];
+        velocities[i] = [];
+        for (let j = 0; j < to_run[0].length; j++) {
+            positions[i].push(to_run[i][j]);
+            velocities[i].push(0);
+        }
+    }
 
-    // Ganymede;
-    // positions.push([17, -5, 6]);
-    positions.push(data[2]);
-    velocities.push([0, 0, 0]);
-
-    // Callisto;
-    // positions.push([13, -3, 0]);
-    positions.push(data[3]);
-    velocities.push([0, 0, 0]);
-
-    let time_steps = 0;
     let steps = 0;
 
-    function is_stationary(arr, axis) {
-        // for (let i = 0; i < arr[0].length; i++) {
-            for (let j = 0; j < arr.length; j++) {
-                if (arr[j][axis] != 0) {
+    //Checker functions
+    function is_stationary(arr) {
+        for (let j = 0; j < arr[0].length; j++) {
+            if(done_axis.includes(j)) {
+                continue;
+            }
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i][j] != 0) {
                     return false;
                 }
             }
-        // }
-        // console.log(arr);
-        return true;
+            if(!done_axis.includes(j)) {
+                axis = j;
+                done_axis.push(j);
+                console.log("   axis: " + j);
+                return true;
+            }
+        }
     }
 
     function is_correct_positions(arr, axis) {
         for (let i = 0; i < arr.length; i++) {
             // for (let j = 0; j < arr[0].length; j++) {
-                if (arr[i][axis] != data[i][axis]) {
+                if (arr[i][axis] != to_run[i][axis]) {
                     return false;
                 }
             // }
@@ -105,40 +115,44 @@ function loop(axis) {
         return true;
     }
 
+    // Check velocities, Get period
     while (true) {
         for (let i = 0; i < substeps; i++) {
             step();
         }
-
         time_steps += substeps;
+
         // console.log("Time: " + time_steps);
 
-        if (is_stationary(velocities, axis)) {
+        if (is_stationary(velocities)) {
             steps = time_steps;
             break;
         }
     }
-    console.log(" Steps: " + steps);
+    console.log("   Steps: " + steps);
 
-
+    // Check pos
     while (true) {
+        if (is_correct_positions(positions, axis)) {
+            console.log(" -- Breaking -- ");
+            console.log("Current Period: " + time_steps);
+            console.log("Before Accumulation: " + substeps);
+            substeps = lcm(time_steps, substeps);
+            console.log("Accumulated Period: " + substeps);
+            console.log('\n');
+            if (done_axis.length != 3) {
+                return loop();
+            } else {
+                return time_steps;
+            }
+        }
+
         for (let i = 0; i < steps; i++) {
             step();
         }
 
         time_steps += steps;
-
         // console.log("Time: " + time_steps);
-
-        if (is_correct_positions(positions, axis)) {
-            console.log("Breaking");
-            console.log("Prev: " + time_steps);
-            console.log("Before: " + substeps);
-            substeps = lcm(time_steps, substeps);
-            console.log("Acc: " + substeps);
-            console.log("\n");
-            return substeps;
-        }
     }
 }
 function gcd(a, b) {
@@ -151,12 +165,8 @@ function lcm(a, b) {
     return (a * b) / gcd(a, b);
 }
 
-const x = loop(0);
-const y = loop(1);
-const z = loop(2);
-console.log(z);
-
-// console.log(lcm(z, lcm(x, y)));
+let ans = loop(0);
+console.log("Answer: " + ans);
 
 // console.log("POS: ");
 // console.log(positions);
