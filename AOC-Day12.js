@@ -1,4 +1,3 @@
-// x = 0; y = 1; z = 2;
 let positions = [];
 let velocities = [];
 
@@ -23,7 +22,7 @@ const test2 = [
     [9, -8, -3]
 ]
 
-const to_run = test2;
+const to_run = data;
 
 function step() {
     // Gravity
@@ -63,12 +62,10 @@ function step() {
 //     console.log("SUM: " + Total_energy);
 // }
 
-let substeps = 1;
-let done_axis = [];
-
-function loop() {
+function loop(axis) {
+    console.log("   axis: " + axis);
     let time_steps = 0;
-    let axis = -1;
+
     //Setup
     positions = [];
     velocities = [];
@@ -85,32 +82,20 @@ function loop() {
     let steps = 0;
 
     //Checker functions
-    function is_stationary(arr) {
-        for (let j = 0; j < arr[0].length; j++) {
-            if(done_axis.includes(j)) {
-                continue;
-            }
-            for (let i = 0; i < arr.length; i++) {
-                if (arr[i][j] != 0) {
-                    return false;
-                }
-            }
-            if(!done_axis.includes(j)) {
-                axis = j;
-                done_axis.push(j);
-                console.log("   axis: " + j);
-                return true;
+    function is_stationary(arr, axis) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i][axis] != 0) {
+                return false;
             }
         }
+        return true;
     }
 
     function is_correct_positions(arr, axis) {
         for (let i = 0; i < arr.length; i++) {
-            // for (let j = 0; j < arr[0].length; j++) {
-                if (arr[i][axis] != to_run[i][axis]) {
-                    return false;
-                }
-            // }
+            if (arr[i][axis] != to_run[i][axis]) {
+                return false;
+            }
         }
         return true;
     }
@@ -124,7 +109,7 @@ function loop() {
 
         // console.log("Time: " + time_steps);
 
-        if (is_stationary(velocities)) {
+        if (is_stationary(velocities, axis)) {
             steps = time_steps;
             break;
         }
@@ -136,15 +121,8 @@ function loop() {
         if (is_correct_positions(positions, axis)) {
             console.log(" -- Breaking -- ");
             console.log("Current Period: " + time_steps);
-            console.log("Before Accumulation: " + substeps);
-            substeps = lcm(time_steps, substeps);
-            console.log("Accumulated Period: " + substeps);
             console.log('\n');
-            if (done_axis.length != 3) {
-                return loop();
-            } else {
-                return time_steps;
-            }
+            return time_steps;
         }
 
         for (let i = 0; i < steps; i++) {
@@ -165,7 +143,10 @@ function lcm(a, b) {
     return (a * b) / gcd(a, b);
 }
 
-let ans = loop(0);
+let x = loop(0);
+let y = loop(1);
+let z = loop(2);
+let ans = lcm(x, lcm(y, z));
 console.log("Answer: " + ans);
 
 // console.log("POS: ");
