@@ -10,7 +10,6 @@ function Intcode(input) {
     let i = 0;
     let relative_base = 0;
     let param1, param2, result;
-    let depth = 0;
     while(i < code.length) {
         const opcode = code[i] % 100;
         const param1_mode = ((code[i] % 1000) - opcode);
@@ -74,7 +73,6 @@ function Intcode(input) {
             if (status == 0) {
                 return "Blocked";
             } else if (status == 2) {
-                console.log("   Reached in: " + depth + "steps");
                 return "End";
             } else {
                 depth++;
@@ -120,49 +118,73 @@ function Intcode(input) {
     }
 }
 
-function create_path(route, depth, reverse_dir) {
-    console.log(route);
+function create_path(routes, depth) {
+    // console.log(routes);
+    console.log("   Depth: " + depth);
+    const len = routes.length;
+    const index_to_remove = [];
+    for(let i = 0; i < len; i++) {
+        // console.log(routes[i]);
+        const curr_route = routes[i];
+        const last_move = curr_route[curr_route.length - 1];
+        let opp_dir = 0;
+        const copied = [];
 
-    if (route.length == 0) {
-        create_path([north], 1);
-        create_path([south], 1);
-        create_path([west], 1);
-        create_path([east], 1);
-    } else {
-        const arr1 = route.slice();
-        const arr2 = route.slice();
-        const arr3 = route.slice();
-        const arr4 = route.slice();
-        arr1.push(north);
-        arr2.push(south);
-        arr3.push(west);
-        arr4.push(east);
+        // to remove reverse direction of last move
+        let directions = [north, south, west, east];
+        switch (last_move) {
+            case north:
+                opp_dir = south;
+                break;
+            case south:
+                opp_dir = north;
+                break;
+            case west:
+                opp_dir = east;
+                break;
+            case east:
+                opp_dir = west;
+                break;
+            default:
+                console.log("direction error");
+                break; 
+        }
+        directions = directions.filter(dirn => dirn != opp_dir);
+        for(let j = 0; j < directions.length; j++) {
+            copied[j] = curr_route.slice();
+            copied[j].push(directions[j]);
+        }
 
-        const status = Intcode(route);
+        const status = Intcode(routes[i]);
         console.log(status);
-        console.log('\n');
         switch (status) {
             case "Next":
-                create_path(arr1, depth + 1);
-                create_path(arr2, depth + 1);
-                create_path(arr3, depth + 1);
-                create_path(arr4, depth + 1);
+                routes[i] = copied[0];
+                routes.push(copied[1]);
+                routes.push(copied[2]);
                 break;
-            
             case "Blocked":
-                return;
+                index_to_remove.push(i);
+                continue;
                 break;
-
             case "End":
+                console.log('\n');
                 console.log("Depth: " + depth);
                 console.error("Oxygen system found");
                 return;
                 break;
-
             default:
                 console.log("Error code: " + status);
                 break;
         }
     }
+
+    // remove blocked paths
+    for (let i = index_to_remove.length - 1; i >= 0; i--) {
+        routes.splice(index_to_remove[i], 1);
+    }
+    console.log('\n');
+    return create_path(routes, depth + 1);
 }
-create_path([], 0);
+
+create_path([[north], [south], [west], [east]], 1);
