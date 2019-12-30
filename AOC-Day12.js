@@ -1,5 +1,9 @@
+// Day 12: The N-Body Problem
+// https://adventofcode.com/2019/day/12
+
 let positions = [];
 let velocities = [];
+let axis_sym = ["x", "y", "z"];
 
 const data = [
     [16, -8, 13],
@@ -48,22 +52,41 @@ function step() {
     }
 }
 
-// function get_energy() {
-//     let Total_energy = 0;
-//     for (let planet = 0; planet < 4; planet++) {
-//         let KE = 0;
-//         let PE = 0;
-//         for (let axis = 0; axis < 3; axis++) {
-//             PE += Math.abs(positions[planet][axis]);
-//             KE += Math.abs(velocities[planet][axis]);
-//         }
-//         Total_energy += KE * PE;
-//     }
-//     console.log("SUM: " + Total_energy);
-// }
+function get_energy() {
+    // setup
+    for (let i = 0; i < to_run.length; i++) {
+        positions[i] = [];
+        velocities[i] = [];
+        for (let j = 0; j < to_run[0].length; j++) {
+            positions[i].push(to_run[i][j]);
+            velocities[i].push(0);
+        }
+    }
 
+    // 1000 iterations
+    for (let i = 0; i < 1000; i++) {
+        step();
+    }
+
+    // Get energy level
+    let Total_energy = 0;
+    for (let planet = 0; planet < 4; planet++) {
+        let KE = 0;
+        let PE = 0;
+        for (let axis = 0; axis < 3; axis++) {
+            PE += Math.abs(positions[planet][axis]);
+            KE += Math.abs(velocities[planet][axis]);
+        }
+        Total_energy += KE * PE;
+    }
+    console.log("Part 1: " + Total_energy);
+}
+get_energy();
+console.log('\n');
+
+// Part2
 function loop(axis) {
-    console.log("   axis: " + axis);
+    console.log("   Axis: " + axis_sym[axis]);
     let time_steps = 0;
 
     //Setup
@@ -102,10 +125,8 @@ function loop(axis) {
 
     // Check velocities, Get period
     while (true) {
-        for (let i = 0; i < substeps; i++) {
-            step();
-        }
-        time_steps += substeps;
+        step();
+        time_steps++;
 
         // console.log("Time: " + time_steps);
 
@@ -114,14 +135,13 @@ function loop(axis) {
             break;
         }
     }
-    console.log("   Steps: " + steps);
+    // console.log("   Steps: " + steps);
 
     // Check pos
     while (true) {
         if (is_correct_positions(positions, axis)) {
-            console.log(" -- Breaking -- ");
-            console.log("Current Period: " + time_steps);
-            console.log('\n');
+            // console.log(" -- Breaking -- ");
+            console.log("Period: " + time_steps);
             return time_steps;
         }
 
@@ -147,7 +167,8 @@ let x = loop(0);
 let y = loop(1);
 let z = loop(2);
 let ans = lcm(x, lcm(y, z));
-console.log("Answer: " + ans);
+console.log('\n');
+console.log("Part 2: " + ans);
 
 // console.log("POS: ");
 // console.log(positions);

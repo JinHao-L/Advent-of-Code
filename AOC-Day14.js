@@ -1,3 +1,6 @@
+// Day 14: Space Stoichiometry
+// https://adventofcode.com/2019/day/14
+
 const fs = require('fs');
 const read = fs.readFileSync("Day14.txt");
 let data = read.toString().split("\r\n").map(recipe => recipe.split(" => "));
@@ -69,10 +72,10 @@ function next() {
                 add(fuel_ptr, [num, name]);
             }
         }
-        // console.log(fuel_ptr);
     }
-    console.log('\n')
-    console.log(" Ans: " + fuel_ptr[0][0] + " " + fuel_ptr[0][1]);
+    
+    // console.log('\n');
+    // console.log(" Ans: " + fuel_ptr[0][0] + " " + fuel_ptr[0][1]);
     return fuel_ptr[0][0];
 }
 
@@ -115,10 +118,12 @@ excess = [];
 copy_and_multiply(original_ptr, 1);
 const part1 = next();
 console.log(1 + " fuels requires " + part1 + " ores");
-// console.log("Part1: " + part1);
+console.log("Part 1: " + part1);
 
 const startpt = Math.floor(1000000000000 / part1);
+console.log('\n');
 console.log("Starting pt: " + startpt);
+
 function loop(multiplier, step, prev) {
     excess = [];
     copy_and_multiply(original_ptr, multiplier);
@@ -131,10 +136,12 @@ function loop(multiplier, step, prev) {
             console.log(multiplier - 1 + " fuels requires " + prev + " ores");
             return multiplier - 1;
         } else {
+            console.log('Step change');
             return loop(multiplier - step, step / 10, min_ores);
         }
     } else {
         return loop(multiplier + step, step, min_ores);
     }
 }
-console.log("Part2: " + loop(startpt, Math.pow(10, startpt.toString().length - 1)));
+
+console.log("Part 2: " + loop(startpt, Math.pow(10, startpt.toString().length - 1), "NULL"));
