@@ -233,9 +233,7 @@ function write(arr, i, j, val) {
     if (arr[i] == undefined) {
         arr[i] = [];
     }
-    if (arr[i][j] == undefined) {
-        arr[i][j] = val;
-    }
+    arr[i][j] = val;
 }
 
 let max_X = cX;
@@ -284,59 +282,44 @@ console.log(min_Y);
 console.log("midX: " + (max_X - min_Y)/2);
 console.log("midY: " + (max_Y - min_Y)/2);
 
-draw(map);
+// draw(map);
 
 let oxygen_arr = [];
 oxygen_arr.push([oxygen_X, oxygen_Y]);
 
 function spread(currX, currY) {
-    let i = -1;
-    let j = 0;
-    if(map[currY + i][currX + j] == '.') {
-        map[currY + i][currX + j] = 'O';
-        oxygen_arr.push([currX + j, currY + i]);
-    }
-
-    i = 1;
-    if (map[currY + i][currX + j] == '.') {
-        map[currY + i][currX + j] = 'O';
-        oxygen_arr.push([currX + j, currY + i]);
-    }
-
-    i = 0;
-    j = -1;
-    if (map[currY + i][currX + j] == '.') {
-        map[currY + i][currX + j] = 'O';
-        oxygen_arr.push([currX + j, currY + i]);
-    }
-
-    i = 0;
-    j = 1;
-    if (map[currY + i][currX + j] == '.') {
-        map[currY + i][currX + j] = 'O';
-        oxygen_arr.push([currX + j, currY + i]);
+    for(let i = -1; i <= 1; i++) {
+        for(let j = -1; j <= 1; j++) {
+            const val = Math.abs(i + j);
+            if (val == 1 && map[currY + i][currX + j] == '.') {
+                map[currY + i][currX + j] = 'O';
+                oxygen_arr.push([currX + j, currY + i]);
+            }
+        }
     }
 }
 
 function next_time(time) {
     console.log('\n');
+    console.log("   Time: " + time);
         console.log(oxygen_arr);
         draw(map);
 
-    const len = oxygen_arr.length;
-    for(let i = 0; i < len; i++) {
-        const oxygen = oxygen_arr.shift();
-        spread(oxygen[0], oxygen[1], oxygen_arr);
-    }
-    if (not_done(map)) {
-        return next_time(time + 1);
+    if (is_not_done(map)) {
+        const len = oxygen_arr.length;
+        for (let i = 0; i < len; i++) {
+            const oxygen = oxygen_arr.shift();
+            spread(oxygen[0], oxygen[1]);
+        }
     } else {
         console.log("Done in: " + time + " min!");
         return time;
     }
+    
+    return next_time(time + 1);
 }
 
-function not_done(arr) {
+function is_not_done(arr) {
     for (let i = 0; i < max_Y; i++) {
         for (let j = 0; j < max_X; j++) {
             const val = read(arr, i, j);
@@ -349,4 +332,3 @@ function not_done(arr) {
 }
 
 next_time(0);
-draw(map);
