@@ -2,7 +2,7 @@
 // https://adventofcode.com/2019/day/6
 
 const fs = require('fs');
-const read = fs.readFileSync("Day6.txt");
+const read = fs.readFileSync("AOC-2019/Day6.txt");
 const input = read.toString().split("\r\n");
 const input1 = "COM)BA, BA)CA, CA)DA, DA)EA, EA)FA, BA)GA, GA)HA, DA)IA, EA)JA, JA)KA, KA)LA, KA)YOU, IA)SAN".split(', ');
 

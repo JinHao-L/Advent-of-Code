@@ -2,7 +2,7 @@
 // https://adventofcode.com/2019/day/8
 
 const fs = require('fs');
-const input = fs.readFileSync("Day8.txt");
+const input = fs.readFileSync("AOC-2019/Day8.txt");
 const data = input.toString().split("");
 
 function get_layers(arr, width, height) {

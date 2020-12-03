@@ -2,7 +2,7 @@
 // https://adventofcode.com/2019/day/14
 
 const fs = require('fs');
-const read = fs.readFileSync("Day14.txt");
+const read = fs.readFileSync("AOC-2019/Day14.txt");
 let data = read.toString().split("\r\n").map(recipe => recipe.split(" => "));
 
 let original_ptr = undefined;
@@ -42,7 +42,7 @@ function copy_and_multiply(arr, multiplier) {
 function next() {
     while(fuel_ptr.length > 1) {
         let item = fuel_ptr.shift();
-        
+
         if (item[1] == 'ORE') {
             add(fuel_ptr, item);
         } else {
@@ -59,7 +59,7 @@ function next() {
                 let num = ingred[0] * multiplier;
                 let name = ingred[1];
 
-                // check excess stock 
+                // check excess stock
                 const checker = check_excess(name, num);
                 if (checker != undefined) {
                     if(checker >= num) {
@@ -73,7 +73,7 @@ function next() {
             }
         }
     }
-    
+
     // console.log('\n');
     // console.log(" Ans: " + fuel_ptr[0][0] + " " + fuel_ptr[0][1]);
     return fuel_ptr[0][0];
