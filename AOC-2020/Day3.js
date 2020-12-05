@@ -1,5 +1,5 @@
-// Day 2: Password Philosophy
-// https://adventofcode.com/2020/day/2
+// Day 3: Toboggan Trajectory
+// https://adventofcode.com/2020/day/3
 
 const fs = require('fs');
 const read = fs.readFileSync("AOC-2020/Day3_input.txt");
