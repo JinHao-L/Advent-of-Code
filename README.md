@@ -1,7 +1,6 @@
-# Advent-of-Code
-AOC 2019 Quests (Partial)
-AOC 2020 Quests
+# Advent of Code
+This repository contains my AOC solutions for the following years:
+* AOC 2019 Quests (Incomplete)
+* AOC 2020 Quests (Ongoing)
 
-https://adventofcode.com/
-
-Codes mainly done in JS
+Check out the puzzles [here](https://adventofcode.com/)

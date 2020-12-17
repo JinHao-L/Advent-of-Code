@@ -1,5 +1,5 @@
 ## Advent of Code 2019
-This repository contains my partial solutions to [Advent of Code 2019](https://adventofcode.com/2019) in JavaScript
+This section contains my partial solutions to [Advent of Code 2019](https://adventofcode.com/2019) in JavaScript
 
 | Puzzle | Solution |
 |--|--|
