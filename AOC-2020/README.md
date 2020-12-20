@@ -22,3 +22,4 @@ This section contains my solutions to [Advent of Code 2020](https://adventofcode
 | [Day 17: Conway Cubes](https://adventofcode.com/2020/day/17) | [p1](Day17_Part1.js), [p2](Day17_Part2.js) | JavaScript |
 | [Day 18: Operation Order](https://adventofcode.com/2020/day/18) | [p1&2](Day18.js) | JavaScript |
 | [Day 19: Monster Messages](https://adventofcode.com/2020/day/19) | [p1&2](Day19.js) | JavaScript |
+| [Day 20: Jurassic Jigsaw](https://adventofcode.com/2020/day/20) | [p1&2](Day20.js) | JavaScript |
