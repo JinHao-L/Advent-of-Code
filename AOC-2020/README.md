@@ -25,3 +25,4 @@ This section contains my solutions to [Advent of Code 2020](https://adventofcode
 | [Day 20: Jurassic Jigsaw](https://adventofcode.com/2020/day/20) | [p1&2](Day20.js) | JavaScript |
 | [Day 21: Allergen Assessment](https://adventofcode.com/2020/day/21) | [p1&2](Day21.js) | JavaScript |
 | [Day 22: Crab Combat](https://adventofcode.com/2020/day/22) | [p1&2](Day22.js) | JavaScript |
+| [Day 23: Crab Cups](https://adventofcode.com/2020/day/23) | [p1&2](Day23.js) | JavaScript |
