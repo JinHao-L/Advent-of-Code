@@ -19,7 +19,7 @@ type Command struct {
 }
 
 func main() {
-	raw_dat, err := ioutil.ReadFile("AOC-2021/Day2_input.txt")
+	raw_dat, err := ioutil.ReadFile("AOC-2021/Day2/input.txt")
 	check(err)
 
 	lines := strings.Split(string(raw_dat), "\n")

@@ -2,7 +2,7 @@
 // https://adventofcode.com/2021/day/1
 
 const fs = require("fs");
-const file = fs.readFileSync("AOC-2021/Day1_input.txt");
+const file = fs.readFileSync("AOC-2021/Day1/input.txt");
 const inputArray = file.toString().split("\n").map((val) => parseInt(val));
 
 const testArray = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
