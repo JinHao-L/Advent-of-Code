@@ -6,8 +6,8 @@ This section contains my solutions to [Advent of Code 2021](https://adventofcode
 | [Day 1: Sonar Sweep](https://adventofcode.com/2021/day/1) | [p1&2](Day1/Day1.js) | JavaScript |
 | [Day 2: Dive!](https://adventofcode.com/2021/day/2) | [p1&2](Day2/Day2.go) | Go |
 | [Day 3: Binary Diagnostic](https://adventofcode.com/2021/day/3) | [p1&2](Day3/Day3.go) | Go |
-| [Day 4:](https://adventofcode.com/2021/day/4) | [p1&2](Day4/Day4.java) | Java |
-| [Day 5:](https://adventofcode.com/2021/day/5) | | |
+| [Day 4: Giant Squid](https://adventofcode.com/2021/day/4) | [p1&2](Day4/Day4.java) | Java |
+| [Day 5: Hydrothermal Venture](https://adventofcode.com/2021/day/5) | [p1&2](Day5/Day5.java) | Java |
 | [Day 6:](https://adventofcode.com/2021/day/6) | | |
 | [Day 7:](https://adventofcode.com/2021/day/7) | | |
 | [Day 8:](https://adventofcode.com/2021/day/8) | | |
