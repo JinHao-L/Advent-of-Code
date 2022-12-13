@@ -4,8 +4,8 @@ This section contains my solutions to [Advent of Code 2022](https://adventofcode
 | Puzzle | Solution | Lang |
 |--|--|--|
 | [Day 1: Calorie Counting](https://adventofcode.com/2022/day/1) | [p1&2](Day1/Day1.py) | Python |
-| [Day 2: Rock Paper Scissors](https://adventofcode.com/2022/day/2) | [p1&2](Day1/Day2.py) | Python |
-| [Day 3:](https://adventofcode.com/2022/day/3) | | |
+| [Day 2: Rock Paper Scissors](https://adventofcode.com/2022/day/2) | [p1&2](Day2/Day2.py) | Python |
+| [Day 3: Rucksack Reorganization](https://adventofcode.com/2022/day/3) | [p1&2](Day3/Day3.py) | Python |
 | [Day 4:](https://adventofcode.com/2022/day/4) | | |
 | [Day 5:](https://adventofcode.com/2022/day/5) | | |
 | [Day 6:](https://adventofcode.com/2022/day/6) | | |
