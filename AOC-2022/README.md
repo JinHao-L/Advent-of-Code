@@ -9,7 +9,7 @@ This section contains my solutions to [Advent of Code 2022](https://adventofcode
 | [Day 4: Camp Cleanup](https://adventofcode.com/2022/day/4) | [p1&2](Day4/Day4.py) | Python |
 | [Day 5: Supply Stacks](https://adventofcode.com/2022/day/5) | [p1&2](Day5/Day5.py) | Python |
 | [Day 6: Tuning Trouble](https://adventofcode.com/2022/day/6) | [p1&2](Day6/Day6.py) | Python |
-| [Day 7:](https://adventofcode.com/2022/day/7) | | |
+| [Day 7: No Space Left On Device](https://adventofcode.com/2022/day/7) | [p1&2](Day7/Day7.py) | Python |
 | [Day 8:](https://adventofcode.com/2022/day/8) | | |
 | [Day 9:](https://adventofcode.com/2022/day/9) | | |
 | [Day 10:](https://adventofcode.com/2022/day/10) | | |
