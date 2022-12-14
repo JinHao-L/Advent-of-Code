@@ -7,7 +7,7 @@ This section contains my solutions to [Advent of Code 2022](https://adventofcode
 | [Day 2: Rock Paper Scissors](https://adventofcode.com/2022/day/2) | [p1&2](Day2/Day2.py) | Python |
 | [Day 3: Rucksack Reorganization](https://adventofcode.com/2022/day/3) | [p1&2](Day3/Day3.py) | Python |
 | [Day 4: Camp Cleanup](https://adventofcode.com/2022/day/4) | [p1&2](Day4/Day4.py) | Python |
-| [Day 5:](https://adventofcode.com/2022/day/5) | | |
+| [Day 5: Supply Stacks](https://adventofcode.com/2022/day/5) | [p1&2](Day5/Day5.py) | Python |
 | [Day 6:](https://adventofcode.com/2022/day/6) | | |
 | [Day 7:](https://adventofcode.com/2022/day/7) | | |
 | [Day 8:](https://adventofcode.com/2022/day/8) | | |
